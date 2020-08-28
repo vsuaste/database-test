@@ -36,6 +36,18 @@ services:
     tty: true
     volumes:
       - sqlite_data/:/root/db/
+      
+  test_mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+    user: '0:0'
+    ports:
+      - 1433:1433
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pass@word"
+      MSSQL_PID: "Express"
+      
 volumes:
   postgres_data:
   mysql_data:
