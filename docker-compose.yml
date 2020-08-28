@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  test_postgres:
+    image: "postgres"
+    environment:
+      POSTGRES_USER: "test_postgres"
+      POSTGRES_PASSWORD: "test_postgres"
+      POSTGRES_DB: "test_postgres"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  test_mysql:
+    image: "mysql"
+    environment:
+      MYSQL_USER: "test_mysql"
+      MYSQL_PASSWORD: "test_mysql"
+      MYSQL_DATABASE: "test_mysql"
+      MYSQL_ROOT_PASSWORD: 'test_mysql'
+    volumes:
+      - mysql_data:/var/lib/mysql/data
+
+  test_mariadb:
+    image: "mariadb"
+    environment:
+      MYSQL_USER: "test_mariadb"
+      MYSQL_PASSWORD: "test_mariadb"
+      MYSQL_DATABASE: "test_mariadb"
+      MYSQL_ROOT_PASSWORD: 'test_mariadb'
+    volumes:
+      - mariadb_data:/var/lib/mariadb/data
+
+  test_sqlite:
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - sqlite_data/:/root/db/
+volumes:
+  postgres_data:
+  mysql_data:
+  mariadb_data:
+  sqlite_data:
